@@ -105,7 +105,7 @@ def add():
     if form.validate_on_submit():
         movie_searched = form.title.data
         url = "https://api.themoviedb.org/3/search/movie"
-        params = {"api_key":  "3acab63d32ad3efcea0698841e0d0c0d", "query": movie_searched}
+        params = {"api_key":  os.environ.get("MOVIE_API_KEY), "query": movie_searched}
         response = requests.get(url=url, params=params)
         searched_movies = response.json()["results"]
         # print(searched_movies)
@@ -118,7 +118,7 @@ def add2():
     all_movies = db.session.query(Movie).all()
     movie_id = request.args.get("id")
     url = f"https://api.themoviedb.org/3/movie/{movie_id}"
-    params = {"api_key": "3acab63d32ad3efcea0698841e0d0c0d" }
+    params = {"api_key": os.environ.get("MOVIE_API_KEY") }
     response = requests.get(url=url,params=params)
     result = response.json()
     # https://image.tmdb.org/t/p/w500/
