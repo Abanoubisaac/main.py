@@ -105,7 +105,7 @@ def add():
     if form.validate_on_submit():
         movie_searched = form.title.data
         url = "https://api.themoviedb.org/3/search/movie"
-        params = {"api_key":  os.environ.get("MOVIE_API_KEY), "query": movie_searched}
+        params = {"api_key":  os.environ.get("MOVIE_API_KEY"), "query": movie_searched}
         response = requests.get(url=url, params=params)
         searched_movies = response.json()["results"]
         # print(searched_movies)
